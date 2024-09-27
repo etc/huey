@@ -5,3 +5,16 @@
 .footer-social {
 	margin-right: 0.5em;
 }
+
+.hero-carousel {
+  .slider {
+    .slider-container {
+      .slider-item img {
+	      object-fit: contain;
+	      object-position: center;
+	      height: 80vh;
+	      overflow: hidden;
+      }
+    }
+  }
+}

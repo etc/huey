@@ -12,7 +12,23 @@
   <div id="navbar-menu" class="navbar-menu">
     <div class="navbar-end">
         {{ range .Site.Menus.nav }}
-        <a class="navbar-item{{if or ($currentPage.IsMenuCurrent "nav" .) ($currentPage.HasMenuCurrent "nav" .) }} is-active{{end}}" href="{{.URL}}"  >{{ .Name }}</a>
+			{{ if .HasChildren }}
+				<div class="navbar-item has-dropdown is-hoverable">
+				<a class="navbar-item {{if or ($currentPage.IsMenuCurrent "nav" .) ($currentPage.HasMenuCurrent "nav" .) }} is-active{{end}}" href="{{.URL}}"  >{{ .Name }}</a>
+				<div class="navbar-dropdown">
+				{{ range .Children }}
+					<a class="navbar-item" href="{{ .URL }}">{{ .Name }}</a>
+				{{ end }}
+				</div>
+				</div>
+        	{{else}}
+				{{if eq (substr .Name 0 5) "About" }}
+					<div class="navbar-item">
+					<a class="navbar-item {{if or ($currentPage.IsMenuCurrent "nav" .) ($currentPage.HasMenuCurrent "nav" .) }} is-active{{end}}" href="{{.URL}}"  >{{ .Name }}</a>
+					</div>
+				{{ else }}
+				{{ end }}					
+			{{ end }}
         {{ end }}
     </div>
   </div>
